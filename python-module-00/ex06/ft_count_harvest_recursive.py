@@ -1,4 +1,4 @@
-def ft_count_harvest_recursive(day, max_days):
+def ft_count_harvest_recursive(day, max_days) -> None:
     if day > max_days:
         return
     print("Day ", day)
