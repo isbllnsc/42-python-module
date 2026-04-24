@@ -4,71 +4,94 @@ class Plant:
         self.height = height
         self.age = age
 
-    def to_string(self):
-        return f"{self.name}: {self.height}cm, {self.age} days old"
+    def set_height(self, new_height):
+        if new_height < 0:
+            print(f"{self.name}: Error, height can't be negative")
+            print("Height update rejected")
+        else:
+            self.height = new_height
 
-    @staticmethod
-    def older_than_year(age):
-        return age > 365
+    def set_age(self, new_age):
+        if new_age < 0:
+            print(f"{self.name}: Error, age can't be negative")
+            print("Age updated rejected")
+        else:
+            self.age = new_age
 
-    @classmethod
-    def create_anonymous(cls):
-        return cls("Unknown plant", 0.0, 0)
-    
+    def show_plant(self):
+        print(f"{self.name}: {self.height}cm, {self.age} days old")
+
+
 class Flower(Plant):
     def __init__(self, name, height, age, color):
         super().__init__(name, height, age)
         self.color = color
         self.bloomed = False
-    
+
     def bloom(self):
         self.bloomed = True
 
     def show_flower(self):
-        print(self.to_string())
+        self.show_plant()
         print(f"Color: {self.color}")
 
         if self.bloomed:
-            print(f"{self.name} is blooming beautifully!")
-        else:
             print(f"{self.name} has not bloomed yet")
-        
-    @classmethod
-    def create_anonymous(cls):
-        return cls("Unknown flower", 0.0, 0, "unknown")
+        else:
+            print(f"{self.name} is blooming beautifully!")
+
 
 class Tree(Plant):
-    def __init__(self, name, height, age, trunk):
+    def __init__(self, name, height, age, trunk_diameter):
         super().__init__(name, height, age)
-        self.trunk = trunk
-        self.shade = shade
+        self.trunk_diameter = trunk_diameter
 
-    def show_tree(self)
-        print(self.to_string())
-        print(f"{self.shade} shade")
+    def show_tree(self):
+        print(f"Trunk diameter: {self.trunk_diameter}")
 
-class Seed(Flower):
-    def __init__(self, name, height, color)
-        super().__init__(name, height, color)
-        self.seeds = seeds
+    def produce_shade(self):
+        print(
+            f"Tree {self.name} now produces a shade of {self.height:.1f}cm long and {self.trunk_diameter:.1f}"
+        )
+
+
+class Vegetable(Plant):
+    def __init__(self, name, height, age, harvest_season):
+        super().__init__(name, height, age)
+        self.harvest_season = harvest_season
+        self.nutritional_value = 0
+
+    def show_veg(self):
+        print(f"{self.name}: {self.height}cm, {self.age} days old")
+        print(f"Harvest season: {self.harvest_season}")
+        print(f"Nutritional value: {self.nutritional_value}")
 
 
 def ft_plant_types():
-    print("=== Garden statistics ===")
-
-    print("=== Check year-old")
-    print(f"Is 30 days more than a year? -> {Plant.older_than_year(30)}")
-    print(f"Is 400 days more than a year? -> {Plant.older_than_year(400)}")
-    print("\n")
+    print("=== Garden Plant Types ===")
 
     print("=== Flower")
-    flower = Flower("Rose", 15, 10, "red")
-    flower.show_flower()
+    rose = Flower("Rose", 15, 10, "red")
+    rose.show_flower()
+    print("[asking the rose to bloom]")
+    rose.bloom()
+    rose.show_flower()
 
-    print("=== Anonymous")
+    print("\n")
+    print("=== Tree")
+    oak = Tree("Oak", 200, 365, 5)
+    oak.show_tree()
+    print("[asking the oak to produce shade]")
+    oak.produce_shade()
 
-    anon = Plant.create_anonymous()
-    print(f"{anon.name}: {anon.height}cm, {anon.age} days old")
+    print("\n")
+    print("=== Vegetable")
+    tomato = Vegetable("Tomato", 5, 10, "April")
+    tomato.show_veg()
+    print("[make tomato grow and age for 20 days]")
+    tomato.set_height(47)
+    tomato.set_age(20)
+    tomato.show_veg()
 
 
 ft_plant_types()
