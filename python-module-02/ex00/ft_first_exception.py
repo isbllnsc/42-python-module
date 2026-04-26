@@ -12,9 +12,7 @@ def test_temperature():
             print(f"Temperature is now {temp}°C")
 
         except ValueError as e:
-            print(
-                f"Caught input_temperature error: invalid literal for int() with base 10: {e}"
-            )
+            print(f"Caught input_temperature error: {e}")
     print()
 
     print("\nAll tests completed –– program didn't crash!")
