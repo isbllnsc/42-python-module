@@ -13,7 +13,7 @@ def test_temperature():
 
         except ValueError as e:
             print(
-                f"Caught input_temperature error: invalid literal for int() with base 10: '{e}'"
+                f"Caught input_temperature error: invalid literal for int() with base 10: {e}"
             )
     print()
 
